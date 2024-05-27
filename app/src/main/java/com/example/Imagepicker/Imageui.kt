@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -17,49 +18,79 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
-/**problem it allows you to pick a image but does not load it. fix this problem *//
+
 @Composable
-fun Image_fun(){
-    val selectedImageUri by remember {
-        mutableStateOf<Uri?>(null)
-    }
-    val selectedImageUris by remember {
-        mutableStateOf<List<Uri>>(emptyList())
+fun PhotoSelectorView(maxSelectionCount: Int = 1) {
+    var selectedImages by remember {
+        mutableStateOf<List<Uri?>>(emptyList())
     }
 
-    val singlePhotoPickerLauncher= rememberLauncherForActivityResult(
-        contract =ActivityResultContracts.PickVisualMedia() , onResult = {uri -> selectedImageUri  }
+    val buttonText = if (maxSelectionCount > 1) {
+        "Select up to $maxSelectionCount photos"
+    } else {
+        "Select a photo"
+    }
+
+    val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { uri -> selectedImages = listOf(uri) }
     )
-    val multiplePhotoPickerLauncher= rememberLauncherForActivityResult(
-        contract =ActivityResultContracts.PickMultipleVisualMedia() , onResult = {uris -> selectedImageUris  }
+
+    // I will start this off by saying that I am still learning Android development:
+    // We are tricking the multiple photos picker here which is probably not the best way,
+    // if you know of a better way to implement this feature drop a comment and let me know
+    // how to improve this design
+    val multiplePhotoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickMultipleVisualMedia(maxItems = if (maxSelectionCount > 1) {
+            maxSelectionCount
+        } else {
+            2
+        }),
+        onResult = { uris -> selectedImages = uris }
     )
-    Column {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            item {
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
-                    Button(onClick = {singlePhotoPickerLauncher.launch(
-                        PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                    )}){
-                        Text(text = "Pick a photo")
-                    }
-                    Button(onClick = { multiplePhotoPickerLauncher.launch(
-                        PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                    )}){
-                        Text(text = "Pick two photo")
-                    }
-                }
-            }
-            item {
-                AsyncImage(model =selectedImageUri ,contentDescription = null,
-                    modifier = Modifier.fillMaxWidth())
-            }
-            items(selectedImageUris){uri->
-                AsyncImage(model =uri,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth())
-            }
+
+    fun launchPhotoPicker() {
+        if (maxSelectionCount > 1) {
+            multiplePhotoPickerLauncher.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            )
+        } else {
+            singlePhotoPickerLauncher.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            )
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = {
+            launchPhotoPicker()
+        }) {
+            Text(buttonText)
+        }
+
+        ImageLayoutView(selectedImages = selectedImages)
+    }
+}
+
+@Composable
+fun ImageLayoutView(selectedImages: List<Uri?>) {
+    LazyRow {
+        items(selectedImages) { uri ->
+            AsyncImage(
+                model = uri,
+                contentDescription = null,
+                modifier = Modifier.fillMaxWidth(),
+                contentScale = ContentScale.Fit
+            )
         }
     }
 }
+

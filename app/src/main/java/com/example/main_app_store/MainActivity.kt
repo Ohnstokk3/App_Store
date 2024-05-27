@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.Imagepicker.Image_fun
+
+import com.example.Imagepicker.PhotoSelectorView
 import com.example.Inventory.ItemField
 import com.example.main_app_store.ui.theme.Main_App_StoreTheme
 
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Image_fun()
+                    PhotoSelectorView()
                 }
             }
         }
