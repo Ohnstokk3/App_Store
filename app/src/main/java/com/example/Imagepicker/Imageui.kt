@@ -23,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
-
+//Todo: You don't understand this comback
 @Composable
 fun PhotoSelectorView(maxSelectionCount: Int = 1) {
     var selectedImages by remember {
@@ -41,10 +41,7 @@ fun PhotoSelectorView(maxSelectionCount: Int = 1) {
         onResult = { uri -> selectedImages = listOf(uri) }
     )
 
-    // I will start this off by saying that I am still learning Android development:
-    // We are tricking the multiple photos picker here which is probably not the best way,
-    // if you know of a better way to implement this feature drop a comment and let me know
-    // how to improve this design
+
     val multiplePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickMultipleVisualMedia(maxItems = if (maxSelectionCount > 1) {
             maxSelectionCount

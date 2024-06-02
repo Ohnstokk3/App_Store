@@ -6,15 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
-/**
+
 class ViewModel(private val ItemsRepository:ItemsRepository) :ViewModel() {
     var itemUiState by mutableStateOf(ItemUiState())
     private set
 suspend fun saveItem(){
     ItemsRepository.insertItem(itemUiState.itemdetails.toItems())
 }
-    fun updateUiState(itemDetails=itemDetails){
-        itemUiState=itemUiState(itemDetails=itemDetails)
+    fun updateUiState(itemDetails:ItemDetaills){
+        itemUiState=ItemUiState(itemdetails=itemDetails)
     }
     data class ItemUiState(
         val itemdetails:ItemDetaills= ItemDetaills(),
@@ -32,4 +32,3 @@ suspend fun saveItem(){
         quantity=quantity.toIntOrNull()?:0
     )
 }
-        **/

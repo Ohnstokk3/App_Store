@@ -1,4 +1,5 @@
 plugins {
+
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
@@ -50,6 +51,7 @@ android {
 }
 
 dependencies {
+
 // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation(libs.androidx.core.ktx)
