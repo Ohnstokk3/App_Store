@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 
-class ViewModel(private val ItemsRepository:ItemsRepository) :ViewModel() {
+class MainViewModel(private val ItemsRepository:ItemsRepository) :ViewModel() {
     var itemUiState by mutableStateOf(ItemUiState())
     private set
 suspend fun saveItem(){

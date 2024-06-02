@@ -18,10 +18,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.Layer.ItemDao
+import com.example.Layer.ItemsRepository
+import com.example.Layer.OfflineItemsRepository
 
 @Composable
 fun ItemField(){
 Column(horizontalAlignment =Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(top=240.dp)){
+
     var text by remember { mutableStateOf("") }
 
     OutlinedTextField(
