@@ -8,6 +8,9 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Database access object to access the Inventory database
+ */
 @Dao
 interface ItemDao {
 
@@ -27,5 +30,4 @@ interface ItemDao {
 
     @Delete
     suspend fun delete(item: Item)
-
 }

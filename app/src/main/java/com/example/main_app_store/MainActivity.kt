@@ -9,7 +9,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 
 import com.example.Imagepicker.PhotoSelectorView
-import com.example.Inventory.ItemField
+import com.example.Inventory.ItemEntryBody
+
 import com.example.main_app_store.ui.theme.Main_App_StoreTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PhotoSelectorView()
+                    ItemEntryBody()
                 }
             }
         }
