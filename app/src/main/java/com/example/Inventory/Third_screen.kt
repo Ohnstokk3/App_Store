@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.Inventory.navigation.NavigationDestination
 import com.example.Layer.ItemDao
 import com.example.Layer.ItemsRepository
 import com.example.Layer.OfflineItemsRepository
@@ -34,13 +35,17 @@ import kotlinx.coroutines.launch
 import java.util.Currency
 import java.util.Locale
 import kotlin.reflect.KFunction1
+object ItemEntryDestination : NavigationDestination {
+    override val route = "item_entry"
+
+}
 
 
 @Composable
 fun ItemEntryBody(viewModel: ItemEntryViewModel = viewModel(factory = AppViewModelProvider.Factory),
                   itemUiState: ItemUiState = viewModel.itemUiState,
                   onItemValueChange: KFunction1<ItemDetails, Unit> = viewModel::updateUiState,
-
+                  navigateToHome: () -> Unit,
                   modifier: Modifier = Modifier
 ) {
     Column(
@@ -56,6 +61,7 @@ fun ItemEntryBody(viewModel: ItemEntryViewModel = viewModel(factory = AppViewMod
             onClick = {
                 coroutineScope.launch {
                     viewModel.saveItem()
+                    navigateToHome()
                 }
             }
         ) {
@@ -78,7 +84,7 @@ fun ItemInputForm(
         OutlinedTextField(
             value = itemDetails.name,
             onValueChange = { onValueChange(itemDetails.copy(name = it)) },
-            label = { Text(text = "item_name_req") },
+            label = { Text(text = "item name req") },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -92,7 +98,7 @@ fun ItemInputForm(
             value = itemDetails.price,
             onValueChange = { onValueChange(itemDetails.copy(price = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-            label = { Text(text="price_req") },
+            label = { Text(text="price req") },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -107,7 +113,7 @@ fun ItemInputForm(
             value = itemDetails.quantity,
             onValueChange = { onValueChange(itemDetails.copy(quantity = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text("quantity_req") },
+            label = { Text("quantity req") },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -119,7 +125,7 @@ fun ItemInputForm(
         )
         if (enabled) {
             Text(
-                text = "required_fields",
+                text = "required fields",
                 modifier = Modifier.padding(start = 16.dp)
             )
         }

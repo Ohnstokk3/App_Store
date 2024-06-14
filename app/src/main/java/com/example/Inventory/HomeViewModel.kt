@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 
+/**
+ * ViewModel to retrieve all items in the Room database.
+ */
 class HomeViewModel(itemsRepository: ItemsRepository) : ViewModel() {
 
     /**

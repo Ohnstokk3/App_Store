@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation(libs.androidx.navigation.compose)
     val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")

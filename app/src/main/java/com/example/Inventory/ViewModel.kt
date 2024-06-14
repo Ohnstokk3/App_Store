@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
-
+import java.text.NumberFormat
 
 /**
  * ViewModel to validate and insert items in the Room database.
@@ -71,6 +71,9 @@ fun ItemDetails.toItem(): Item = Item(
     quantity = quantity.toIntOrNull() ?: 0
 )
 
+fun Item.formatePrice(): String {
+    return NumberFormat.getCurrencyInstance().format(price)
+}
 
 /**
  * Extension function to convert [Item] to [ItemUiState]
