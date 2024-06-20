@@ -16,16 +16,8 @@ fun Graph() {
         drawCircle(
             Color.Red,
             center= Offset(
-                260.dp.toPx(),
-                /**x direction*/
-                /**x direction*/
-                /**x direction*/
-                /**x direction*/
-                70.dp.toPx()
-                /**y direction*/
-                /**y direction*/
-                /**y direction*/
-                /**y direction*/
+                260.dp.toPx(), /**x direction*/
+                70.dp.toPx() /**y direction*/
             )
         )
     }
