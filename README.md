@@ -1,1 +1,1 @@
-Screenshot_20240620_211435_Main_App_Store.jpg
+![alt text](https://github.com/[Ohnstokk3]/[App_Store]/blob/[master]/image.jpg?raw=true)
