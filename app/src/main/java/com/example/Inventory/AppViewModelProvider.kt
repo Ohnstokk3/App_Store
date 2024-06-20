@@ -9,9 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.Layer.InventoryApplication
 
-/**
- * Provides Factory to create instance of ViewModel for the entire Inventory app
- */
+
 /**
  * Provides Factory to create instance of ViewModel for the entire Inventory app
  */
@@ -23,10 +21,15 @@ object AppViewModelProvider {
         initializer {
             ItemEntryViewModel(inventoryApplication().container.itemsRepository)
         }
-initializer {
-    HomeViewModel(inventoryApplication().container.itemsRepository)
-}
-
+        initializer {
+            HomeViewModel(inventoryApplication().container.itemsRepository)
+        }
+        initializer {
+            ItemDetailViewModel(
+                this.createSavedStateHandle(),
+                inventoryApplication().container.itemsRepository
+            )
+        }
     }
 }
 
