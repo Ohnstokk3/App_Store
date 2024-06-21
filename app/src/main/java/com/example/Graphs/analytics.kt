@@ -12,6 +12,7 @@ fun ShowArraySums(modifier: Modifier = Modifier) {
     var xsum=0
     var ysum = 0.0
     var xysum = 0.0
+    val numbersInTheArray=x.size
 var square=0.0
 // Iterate through the arrays using a for loop
     for (i in x.indices) {
@@ -29,17 +30,24 @@ for(num in x){
     for (num in y) {
         ysum += num
     }
-    val sumof=xysum-xsum*ysum
- val sumof2=square-xsum*xsum
-val simof3 =sumof/sumof2
+
+    val sumof=numbersInTheArray*xysum-xsum*ysum
+ val sumof2=numbersInTheArray*square-xsum*xsum
+val msum =sumof/sumof2
+    val b =ysum-msum*xsum
+    val c= b/numbersInTheArray
+    val pridiction=msum*6+c/**here we are using 6 but we can let the user enter a value they want*/
 Column {
     Text(" sum x: $xsum")
     Text("sum y: $ysum")
     Text("total xy: $xysum")
     Text("total square: $square")
-    Text("total: $sumof")
-    Text("total: $sumof2")
-    Text("total: $simof3")
+    Text("total sum 1: $sumof")
+    Text("total sum 2: $sumof2")
+    Text("total m: $msum")
+    Text("total b: $b")
+    Text("total c: $c")
+    Text("total pridiction: $pridiction")/**user can enter a number as the x value and it will give the y corresponding y value */
 
 
 }
