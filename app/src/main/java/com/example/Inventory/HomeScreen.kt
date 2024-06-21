@@ -69,7 +69,7 @@ fun InventoryList(
         modifier = modifier,
         contentPadding = contentPadding
     ) {
-        items(items=itemList, key = {it.id}) { item ->
+        items(items=itemList) { item ->
             InventoryItem(item = item,
                 modifier = Modifier
                     .padding(8.dp)
