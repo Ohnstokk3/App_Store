@@ -20,6 +20,7 @@ class AnalyticsViewModel: ViewModel(){
         val analyticUiState: AnalyticUiState
     )
    **/
+    @Composable
     /**linear regression*/
     fun ShowArraySums(modifier: Modifier = Modifier) {
         val x = intArrayOf(1,2,3,4,5,6,7)

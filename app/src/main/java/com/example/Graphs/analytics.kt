@@ -18,9 +18,15 @@ import com.example.Inventory.ItemUiState
 @Composable
 fun Analytics(viewModel: AnalyticsViewModel = viewModel(),
        ){
-    Column(modifier = Modifier.padding(40.dp)) {
-        var name by remember { mutableStateOf("") }
-        OutlinedTextField(value=name, onValueChange = {name=it})
+    var calculate by remember { mutableStateOf("") }/**Remember user input*/
 
+    val calculateList:List<String> = calculate.split(",")/**Convert to list and use , as indicator for the next number the user entered */
+
+    val ConvertListIntoDouble=calculateList.map { it.toDoubleOrNull() }/**We use the map operator to convert the String list
+                                                                        into a Double List or the user enters a letter the considered a null */
+
+    Column(modifier = Modifier.padding(40.dp)) {
+      }
+        OutlinedTextField(value=calculate, onValueChange = {calculate=it})
+Text(text = "amount is $ConvertListIntoDouble")
     }
-}
