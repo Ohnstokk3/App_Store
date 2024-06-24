@@ -22,11 +22,26 @@ fun Analytics(viewModel: AnalyticsViewModel = viewModel(),
 
     val calculateList:List<String> = calculate.split(",")/**Convert to list and use , as indicator for the next number the user entered */
 
-    val ConvertListIntoDouble=calculateList.map { it.toDoubleOrNull() }/**We use the map operator to convert the String list
+    val ConvertListIntoDouble=calculateList.map { it.toDoubleOrNull()?:0.0 }/**We use the map operator to convert the String list
                                                                         into a Double List or the user enters a letter the considered a null */
-
+ var xysum=0.0
+    var ysum=0.0
+    val y=ConvertListIntoDouble
+    val x = intArrayOf(1,2,3,4,5,6,7)
+    val test = if (ConvertListIntoDouble.size >=6) {
+        for (i in y.indices) {
+            // Multiply corresponding elements and add to the total product
+            ysum +=y[i]
+        }
+        for (i in y.indices) {
+            // Multiply corresponding elements and add to the total product
+            xysum += x[i] *y[i]
+        }
+    } else {
+        0.0 // Or a default value you prefer
+    }
     Column(modifier = Modifier.padding(40.dp)) {
-      }
+
         OutlinedTextField(value=calculate, onValueChange = {calculate=it})
-Text(text = "amount is $ConvertListIntoDouble")
+Text(text = "amount is $xysum")   }
     }

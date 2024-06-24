@@ -66,7 +66,6 @@ class AnalyticsViewModel: ViewModel(){
             Text("total c: $c")
             Text("total prediction: $prediction")
             /**user can enter a number as the x value and it will give the y corresponding y value */
-            /**user can enter a number as the x value and it will give the y corresponding y value */
 
 
         }
