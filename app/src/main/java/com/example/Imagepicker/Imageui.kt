@@ -23,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
-//Todo: You don't understand this comback
+
 @Composable
 fun PhotoSelectorView(maxSelectionCount: Int = 1) {
     var selectedImages by remember {

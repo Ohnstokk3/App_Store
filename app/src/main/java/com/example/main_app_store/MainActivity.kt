@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.Graphs.Analytics
+
 
 
 
@@ -17,6 +17,7 @@ import com.example.Imagepicker.PhotoSelectorView
 import com.example.Inventory.ItemEntryBody
 import com.example.Inventory.navigation.InventoryNavHost
 import com.example.Layer.Item
+import com.example.main_app_store.Front_End.Home
 
 import com.example.main_app_store.ui.theme.Main_App_StoreTheme
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Analytics()
+                    Home()
                 }
             }
         }

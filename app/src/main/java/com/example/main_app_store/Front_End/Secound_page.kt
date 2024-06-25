@@ -71,7 +71,7 @@ fun Inventory2() {
     LazyColumn (verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier.padding(top = 580.dp)
         /** Not Acceptable find a way to move LazyColumn down with out using padding**/
-        /** Not Acceptable find a way to move LazyColumn down with out using padding**/
+
     ){
         items(items = getCardi) {cardi ->
             Cardi_Main(cardi=cardi)
