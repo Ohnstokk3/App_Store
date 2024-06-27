@@ -31,3 +31,8 @@ interface ItemDao {
     @Delete
     suspend fun delete(item: Item)
 }
+@Dao
+interface ResultDao{
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(result: Result)
+}

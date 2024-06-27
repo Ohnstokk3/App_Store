@@ -29,3 +29,6 @@ interface ItemsRepository {
     suspend fun updateItem(item: Item)
 }
 
+interface ResultRepository {
+    suspend fun insert(result: Result)
+}
