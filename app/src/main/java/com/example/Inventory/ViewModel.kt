@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 import java.text.NumberFormat
-
+data class pen(
+    val knee:MutableList<Double> = mutableListOf()
+)
 /**
  * ViewModel to validate and insert items in the Room database.
  */
@@ -18,7 +20,13 @@ class ItemEntryViewModel(private val itemsRepository: ItemsRepository) : ViewMod
      */
     var itemUiState by mutableStateOf(ItemUiState())
         private set
+fun tes(pen: pen){
+    val tree= itemUiState.toString().toDouble()
+    val green=tree*2
+    var house=pen.knee.add(green)
 
+
+}
     /**
      * Updates the [itemUiState] with the value provided in the argument. This method also triggers
      * a validation for input values.
