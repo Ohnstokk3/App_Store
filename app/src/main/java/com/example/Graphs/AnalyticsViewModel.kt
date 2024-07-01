@@ -20,18 +20,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 data class BmiState(
-val weight:String = "",
+
 val height:String = "",
-val BMI:Float = 0f,
+
 val lowerWeightBound:Double=0.0,
-val higherWeightBound:Float = 0f
+
 )
 
 class MainViewModel: ViewModel() {
     var state by mutableStateOf(BmiState())
 
     private fun calculateWeightBounds(){
-
 
         val calculateList:List<String> = state.height.split(",")/**Convert to list and use , as indicator for the next number the user entered */
 
@@ -75,9 +74,6 @@ class MainViewModel: ViewModel() {
 
             )
     }
-
-
-
 
     fun changeHeight(height:String){
         state = state.copy(
