@@ -5,7 +5,7 @@
 # Store 
 
 <img src="https://github.com/Ohnstokk3/App_Store/blob/master/Screenshot_20240702_192438_Main_App_Store.jpg" width="200" height="400" />
-
+The images you see are just place holders. 
 # Financial management part 
 
 <img src="https://github.com/Ohnstokk3/App_Store/blob/master/Screenshot_20240702_193514_Main_App_Store.jpg" width="200" height="400" />
