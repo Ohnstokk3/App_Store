@@ -51,7 +51,9 @@ android {
     }
 }
 
-dependencies {    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+dependencies {
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation(libs.androidx.navigation.compose)
     val room_version = "2.6.1"
 

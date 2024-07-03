@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.Graphs.Analytics
-
-
-import com.example.Graphs.DrawCubic
+import com.example.Human_Resource.Employee
 
 
 class MainActivity : ComponentActivity() {
