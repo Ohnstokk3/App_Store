@@ -3,6 +3,7 @@ package com.example.Inventory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -25,6 +26,6 @@ class QueryViewModel( itemsRepository: ItemsRepository) : ViewModel() {
     }
 }
 data class QueryUiState(
-    val outOfStock: Int = 0,
+    val outOfStock: List<Item> = listOf(),
 
     )

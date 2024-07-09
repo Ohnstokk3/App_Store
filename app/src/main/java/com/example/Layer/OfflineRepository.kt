@@ -3,7 +3,7 @@ package com.example.Layer
 import kotlinx.coroutines.flow.Flow
 
 class OfflineItemsRepository(private val itemDao: ItemDao) : ItemsRepository {
-    override fun getiteCount(): Flow<Int> =itemDao.getiteCount()
+    override fun getiteCount(): Flow<List<Item>> =itemDao.getiteCount()
     override fun getAllItemsStream(): Flow<List<Item>> = itemDao.getAllItems()
 
     override fun getItemStream(id: Int): Flow<Item?> = itemDao.getItem(id)

@@ -3,7 +3,7 @@ package com.example.Layer
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
-    fun getiteCount(): Flow<Int>
+    fun getiteCount(): Flow<List<Item>>
     fun getAllItemsStream(): Flow<List<Item>>
 
     /**
