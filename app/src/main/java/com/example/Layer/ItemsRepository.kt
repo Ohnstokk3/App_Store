@@ -3,9 +3,7 @@ package com.example.Layer
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
-    /**
-     * Retrieve all the items from the the given data source.
-     */
+    fun getiteCount(): Flow<Int>
     fun getAllItemsStream(): Flow<List<Item>>
 
     /**
@@ -29,6 +27,4 @@ interface ItemsRepository {
     suspend fun updateItem(item: Item)
 }
 
-interface ResultRepository {
-    suspend fun insert(result: Result)
-}
+

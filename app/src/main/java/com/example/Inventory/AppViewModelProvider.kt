@@ -17,7 +17,9 @@ import com.example.Layer.InventoryApplication
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for ItemEditViewModel
-
+        initializer {
+            QueryViewModel(inventoryApplication().container.itemsRepository)
+        }
         // Initializer for ItemEntryViewModel
         initializer {
             ItemEntryViewModel(inventoryApplication().container.itemsRepository)

@@ -1,5 +1,6 @@
 package com.example.Layer
 
+import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -13,7 +14,8 @@ import kotlinx.coroutines.flow.Flow
  */
 @Dao
 interface ItemDao {
-
+    @Query("SELECT COUNT(*) from items")
+    fun getiteCount():Flow<Int>
     @Query("SELECT * from items ORDER BY name ASC")
     fun getAllItems(): Flow<List<Item>>
 
@@ -30,9 +32,4 @@ interface ItemDao {
 
     @Delete
     suspend fun delete(item: Item)
-}
-@Dao
-interface ResultDao{
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(result: Result)
 }

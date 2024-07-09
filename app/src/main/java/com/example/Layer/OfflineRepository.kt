@@ -3,6 +3,7 @@ package com.example.Layer
 import kotlinx.coroutines.flow.Flow
 
 class OfflineItemsRepository(private val itemDao: ItemDao) : ItemsRepository {
+    override fun getiteCount(): Flow<Int> =itemDao.getiteCount()
     override fun getAllItemsStream(): Flow<List<Item>> = itemDao.getAllItems()
 
     override fun getItemStream(id: Int): Flow<Item?> = itemDao.getItem(id)
@@ -14,6 +15,3 @@ class OfflineItemsRepository(private val itemDao: ItemDao) : ItemsRepository {
     override suspend fun updateItem(item: Item) = itemDao.update(item)
 }
 
-class OfflineResultRepository(private val resultDao: ResultDao):ResultRepository{
-    override suspend fun insert(result: Result) = resultDao.insert(result)
-}

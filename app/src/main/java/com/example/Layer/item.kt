@@ -12,9 +12,3 @@ data class Item(
 
 )
 
-@Entity(tableName = "result")
-data class Result(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val prediction: Double,
-)
