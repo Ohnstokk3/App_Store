@@ -6,8 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.Inventory.Deatail_state
+import com.example.Inventory.Deatails_state
 import com.example.Inventory.HomeBody
 import com.example.Inventory.HomeDestination
+import com.example.Inventory.HomesDestination
 import com.example.Inventory.ItemDetailsDestination
 import com.example.Inventory.ItemEntryBody
 import com.example.Inventory.ItemEntryDestination
@@ -22,9 +24,12 @@ fun InventoryNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = ItemEntryDestination.route,
+        startDestination = HomesDestination.route,
         modifier = modifier
     ) {
+        composable(route = HomesDestination.route) {
+            Deatails_state( navigateTomain={navController.navigate(HomesDestination.route)} )
+        }
         composable(route = HomeDestination.route) {
             HomeBody( navigateToItem={navController.navigate(ItemDetailsDestination.route)})
         }

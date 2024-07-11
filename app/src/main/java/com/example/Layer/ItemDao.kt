@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.Flow
 interface ItemDao {
     @Query("SELECT id, name, price, quantity , COUNT(name) AS Items FROM items GROUP BY name HAVING COUNT(name) ORDER BY Items DESC")
     fun getiteCount():Flow<List<Item>>
+    @Query("SELECT COUNT(name) from items")
+    fun getnumber():Flow<Int>
     @Query("SELECT * from items ORDER BY name ASC")
     fun getAllItems(): Flow<List<Item>>
 
