@@ -33,6 +33,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.Inventory.navigation.NavigationDestination
 import com.example.Layer.Item
+import com.example.Layer.NameCount
+
 object HomesDestination : NavigationDestination {
     override val route = "homes"
 
@@ -47,14 +49,14 @@ fun Deatails_state(viewModel: QueryViewModel= viewModel(factory = AppViewModelPr
 
     ) {
         Details(
-            queryUiState = uiState.outOfStock
+            queryUiState = uiState.itemDetails
         )
     }
 
 }
 @Composable
 fun Details(
-    queryUiState: List<Item>,
+    queryUiState: List<NameCount>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -72,7 +74,7 @@ fun Details(
 
 @Composable
 fun InventoryItems(
-    item: Item, modifier: Modifier = Modifier
+    item: NameCount, modifier: Modifier = Modifier
 ) {
 
     Card(
@@ -80,13 +82,20 @@ fun InventoryItems(
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth()
+
             ) {
                 Text(
                     text = item.name,
+                    style = MaterialTheme.typography.titleLarge,
+
+                    )
+                Spacer(Modifier.weight(1f))
+                Text(
+                    text = item.count.toString(),
                     style = MaterialTheme.typography.titleLarge,
 
                     )

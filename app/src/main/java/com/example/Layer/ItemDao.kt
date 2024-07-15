@@ -9,15 +9,18 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
+data class NameCount(
+    val name:String,
+    val count:Int
+)
 /**
  * Database access object to access the Inventory database
  */
 @Dao
 interface ItemDao {
-    @Query("SELECT id, name, price, quantity , COUNT(name) AS Items FROM items GROUP BY name HAVING COUNT(name) ORDER BY Items DESC")
-    fun getiteCount():Flow<List<Item>>
-    @Query("SELECT COUNT(name) from items")
-    fun getnumber():Flow<Int>
+
+    @Query("SELECT name,COUNT(*) AS count from Items GROUP BY name")
+    fun getnumber():Flow<List<NameCount>>
     @Query("SELECT * from items ORDER BY name ASC")
     fun getAllItems(): Flow<List<Item>>
 

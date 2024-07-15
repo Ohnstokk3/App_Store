@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
+import com.example.Layer.NameCount
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -15,7 +16,7 @@ class QueryViewModel( itemsRepository: ItemsRepository) : ViewModel() {
 
 
     val uiState: StateFlow<QueryUiState> =
-        itemsRepository.getiteCount().map { QueryUiState(it) }
+        itemsRepository.getnumber().map { QueryUiState(itemDetails=it) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
@@ -26,6 +27,6 @@ class QueryViewModel( itemsRepository: ItemsRepository) : ViewModel() {
     }
 }
 data class QueryUiState(
-    val outOfStock: List<Item> = listOf(),
+    val itemDetails: List<NameCount> = listOf()
 
     )

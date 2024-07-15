@@ -24,7 +24,7 @@ fun InventoryNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = HomesDestination.route,
+        startDestination = ItemDetailsDestination.route,
         modifier = modifier
     ) {
         composable(route = HomesDestination.route) {
