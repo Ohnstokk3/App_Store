@@ -24,14 +24,14 @@ fun InventoryNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = ItemDetailsDestination.route,
+        startDestination = ItemEntryDestination.route,
         modifier = modifier
     ) {
         composable(route = HomesDestination.route) {
             Deatails_state( navigateTomain={navController.navigate(HomesDestination.route)} )
         }
         composable(route = HomeDestination.route) {
-            HomeBody( navigateToItem={navController.navigate(ItemDetailsDestination.route)})
+            HomeBody( navigateToItem={navController.navigate(HomesDestination.route)})
         }
         composable(route = ItemEntryDestination.route) {
             ItemEntryBody( navigateToHome={navController.navigate(HomeDestination.route)})
