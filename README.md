@@ -11,3 +11,14 @@ The images you see for the store are just placeholders.The end goal is to have a
 
 <img src="https://github.com/Ohnstokk3/App_Store/blob/master/Screenshot_20240702_193514_Main_App_Store.jpg" width="200" height="400" />
 this part is that is  forecasting sales, using past data. not complete needs work version 1 
+@Entity
+public class MyEntity {
+  @PrimaryKey
+  public long id;
+
+  @ColumnInfo(name = "last_updated")
+  @TypeConverters(LocalDateTimeConverter.class)
+  public LocalDateTime lastUpdated;
+
+  // ... other fields
+}
