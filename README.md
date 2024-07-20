@@ -22,3 +22,16 @@ public class MyEntity {
 
   // ... other fields
 }
+@TypeConverter
+public class LocalDateTimeConverter {
+
+  @TypeConverter
+  public static Long fromLocalDateTime(LocalDateTime dateTime) {
+    return dateTime == null ? null : dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+  }
+
+  @TypeConverter
+  public static LocalDateTime toLocalDateTime(Long epochMilli) {
+    return epochMilli == null ? null : Instant.ofEpochMilli(epochMilli).atZone(ZoneId.systemDefault()).toLocalDateTime();
+  }
+}
