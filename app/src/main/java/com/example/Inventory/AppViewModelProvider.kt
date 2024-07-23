@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.Human_Resource.EmployeeViewModel
+import com.example.Human_Resource.result_viewmodel
 
 import com.example.Layer.InventoryApplication
 
@@ -17,6 +18,9 @@ import com.example.Layer.InventoryApplication
  */
 object AppViewModelProvider {
     val Factory = viewModelFactory {
+        initializer {
+            result_viewmodel(inventoryApplication().container.itemsRepository)
+        }
         initializer {
             EmployeeViewModel(inventoryApplication().container.itemsRepository)
         }
