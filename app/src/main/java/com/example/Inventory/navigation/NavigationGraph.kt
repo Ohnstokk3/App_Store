@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.Human_Resource.Add_EmployeeDestination
+import com.example.Human_Resource.Employee
 import com.example.Inventory.Deatail_state
 import com.example.Inventory.Deatails_state
 import com.example.Inventory.HomeBody
@@ -24,9 +26,12 @@ fun InventoryNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = ItemEntryDestination.route,
+        startDestination =  Add_EmployeeDestination.route,
         modifier = modifier
     ) {
+        composable(route = Add_EmployeeDestination.route) {
+            Employee( navigatemain={navController.navigate(HomesDestination.route)} )
+        }
         composable(route = HomesDestination.route) {
             Deatails_state( navigateTomain={navController.navigate(HomesDestination.route)} )
         }

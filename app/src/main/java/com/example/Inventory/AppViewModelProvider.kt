@@ -7,6 +7,7 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.Human_Resource.EmployeeViewModel
 
 import com.example.Layer.InventoryApplication
 
@@ -16,6 +17,9 @@ import com.example.Layer.InventoryApplication
  */
 object AppViewModelProvider {
     val Factory = viewModelFactory {
+        initializer {
+            EmployeeViewModel(inventoryApplication().container.itemsRepository)
+        }
         // Initializer for ItemEditViewModel
         initializer {
             QueryViewModel(inventoryApplication().container.itemsRepository)
