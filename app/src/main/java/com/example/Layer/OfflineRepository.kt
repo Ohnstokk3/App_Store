@@ -2,7 +2,9 @@ package com.example.Layer
 
 import kotlinx.coroutines.flow.Flow
 
-class OfflineItemsRepository(private val itemDao: ItemDao) : ItemsRepository {
+class OfflineItemsRepository(private val itemDao: ItemDao,private val userDao: UserDao) : ItemsRepository {
+    override suspend fun insertuser(user: User) =userDao.insert(user)
+    override fun findUsersBornOnDate(): Flow<List<User>> = userDao.findUsersBornOnDate()
     override fun getnumber(): Flow<List<NameCount>> = itemDao.getnumber()
 
     override fun getAllItemsStream(): Flow<List<Item>> = itemDao.getAllItems()

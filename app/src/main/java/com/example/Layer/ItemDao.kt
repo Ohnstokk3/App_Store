@@ -9,16 +9,24 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
+
 data class NameCount(
     val name:String,
     val count:Int
 )
+@Dao
+interface UserDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(user: User)
+
+    @Query("SELECT birthday,id,name FROM user ")
+    fun findUsersBornOnDate():Flow<List<User>>
+}
 /**
  * Database access object to access the Inventory database
  */
 @Dao
 interface ItemDao {
-
     @Query("SELECT name,COUNT(*) AS count from Items GROUP BY name")
     fun getnumber():Flow<List<NameCount>>
     @Query("SELECT * from items ORDER BY name ASC")

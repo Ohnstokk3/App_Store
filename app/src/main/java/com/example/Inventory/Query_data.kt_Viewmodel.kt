@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 import com.example.Layer.NameCount
+import com.example.Layer.User
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -16,7 +17,7 @@ class QueryViewModel( itemsRepository: ItemsRepository) : ViewModel() {
 
 
     val uiState: StateFlow<QueryUiState> =
-        itemsRepository.getnumber().map { QueryUiState(itemDetails=it) }
+        itemsRepository.findUsersBornOnDate().map { QueryUiState(itemDetails=it) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
@@ -27,6 +28,6 @@ class QueryViewModel( itemsRepository: ItemsRepository) : ViewModel() {
     }
 }
 data class QueryUiState(
-    val itemDetails: List<NameCount> = listOf()
+    val itemDetails: List<User> = listOf()
 
-    )
+)

@@ -6,31 +6,34 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
+import com.example.Layer.ItemsRepository
+import com.example.Layer.User
+import java.util.Date
 
 data class empoyeeState(
-    val Phone:String="",
+    val id: Int = 0,
     val Name:String="",
-    val checked:Boolean=true,
-    val shift: List<String> = listOf("Night shift", "Day shift"),
-    val expanded:Boolean=false
+    val birthday: Date = Date()
+
 )
-class  EmployeeViewModel: ViewModel() {
+
+fun empoyeeState.touser(): User = User(
+    id = id,
+    name = Name,
+    birthday = birthday
+)
+class  EmployeeViewModel(val itemsRepository: ItemsRepository): ViewModel() {
+
     var state by mutableStateOf(empoyeeState())
-         fun ChangeName(Name:String){
-                state=state.copy(
-                    Name=Name
-                )
-
-            }
-    fun PhoneNumber(Phone: String){
-
+    fun ChangeName(Name:String){
         state=state.copy(
-           Phone = Phone
+            Name=Name
         )
+
     }
-    fun Checked(checked: Boolean){
-state=state.copy(
-    checked = checked
-)
+
+    suspend fun save(){
+        itemsRepository.insertuser(state.touser())
     }
+
 }

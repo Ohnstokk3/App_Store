@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 import java.text.NumberFormat
+import java.util.Date
+
 data class pen(
     val knee:MutableList<Double> = mutableListOf()
 )
@@ -20,13 +22,13 @@ class ItemEntryViewModel(private val itemsRepository: ItemsRepository) : ViewMod
      */
     var itemUiState by mutableStateOf(ItemUiState())
         private set
-fun tes(pen: pen){
-    val tree= itemUiState.toString().toDouble()
-    val green=tree*2
-    var house=pen.knee.add(green)
+    fun tes(pen: pen){
+        val tree= itemUiState.toString().toDouble()
+        val green=tree*2
+        var house=pen.knee.add(green)
 
 
-}
+    }
     /**
      * Updates the [itemUiState] with the value provided in the argument. This method also triggers
      * a validation for input values.
@@ -65,6 +67,7 @@ data class ItemDetails(
     val name: String = "",
     val price: String = "",
     val quantity: String = "",
+    val infohday: Date = Date()
 )
 
 /**
@@ -76,7 +79,8 @@ fun ItemDetails.toItem(): Item = Item(
     id = id,
     name = name,
     price = price.toDoubleOrNull() ?: 0.0,
-    quantity = quantity.toIntOrNull() ?: 0
+    quantity = quantity.toIntOrNull() ?: 0,
+    infohday = infohday
 )
 
 fun Item.formatePrice(): String {

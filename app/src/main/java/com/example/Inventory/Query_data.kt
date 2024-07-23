@@ -35,6 +35,7 @@ import com.example.Inventory.navigation.NavigationDestination
 import com.example.Layer.Item
 import com.example.Layer.NameCount
 
+
 object HomesDestination : NavigationDestination {
     override val route = "homes"
 
@@ -42,69 +43,38 @@ object HomesDestination : NavigationDestination {
 
 @Composable
 fun Deatails_state(viewModel: QueryViewModel= viewModel(factory = AppViewModelProvider.Factory),
-             navigateTomain: () -> Unit){
-    val uiState by viewModel.uiState.collectAsState()
+                   navigateTomain: () -> Unit){
+    val uiState = viewModel.uiState.collectAsState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
 
-    ) {
+        ) {
         Details(
-            queryUiState = uiState.itemDetails
+            queryUiState = uiState.value
         )
     }
 
 }
 @Composable
 fun Details(
-    queryUiState: List<NameCount>,
+    queryUiState: QueryUiState,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
-        modifier = modifier,
-
-    ) {
-        items(items= queryUiState) { item ->
-            InventoryItems(item = item,
-                modifier = Modifier
-                    .padding(8.dp)
-                    )
-        }
-    }
-}
-
-@Composable
-fun InventoryItems(
-    item: NameCount, modifier: Modifier = Modifier
-) {
-
-    Card(
-        modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    Column(
+        modifier = Modifier.padding(20.dp)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            modifier = Modifier.fillMaxWidth().padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(
+                18.dp
+            )
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
 
-            ) {
-                Text(
-                    text = item.name,
-                    style = MaterialTheme.typography.titleLarge,
-
-                    )
-                Spacer(Modifier.weight(1f))
-                Text(
-                    text = item.count.toString(),
-                    style = MaterialTheme.typography.titleLarge,
-
-                    )
-                
-
-            }
-
-
+            Text(
+                text = "name is ${queryUiState.itemDetails}"
+            )
         }
     }
 }
+
 

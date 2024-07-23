@@ -3,6 +3,8 @@ package com.example.Layer
 import kotlinx.coroutines.flow.Flow
 
 interface ItemsRepository {
+    suspend fun insertuser(user: User)
+    fun findUsersBornOnDate():Flow<List<User>>
     fun getnumber():Flow<List<NameCount>>
 
     fun getAllItemsStream(): Flow<List<Item>>
