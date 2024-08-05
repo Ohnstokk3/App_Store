@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Main_App_Store"
-        android:name="com.example.Layer.InventoryApplication"
+        android:name="com.example.Layer.layerApp"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

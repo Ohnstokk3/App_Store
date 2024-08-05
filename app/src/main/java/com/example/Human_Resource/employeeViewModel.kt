@@ -8,7 +8,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import com.example.Layer.ItemsRepository
 import com.example.Layer.User
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Date
+import javax.inject.Inject
 
 data class empoyeeState(
     val id: Int = 0,
@@ -22,7 +24,8 @@ fun empoyeeState.touser(): User = User(
     name = Name,
     birthday = birthday
 )
-class  EmployeeViewModel(val itemsRepository: ItemsRepository): ViewModel() {
+@HiltViewModel
+class  EmployeeViewModel @Inject constructor(val itemsRepository: ItemsRepository): ViewModel() {
 
     var state by mutableStateOf(empoyeeState())
     fun ChangeName(Name:String){

@@ -32,6 +32,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.Inventory.navigation.NavigationDestination
@@ -47,11 +49,11 @@ object HomeDestination : NavigationDestination {
  * Entry route for Home screen
  */
 @Composable
-fun HomeBody(  viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory),
-               navigateToItem: () -> Unit,
+fun HomeBody(viewModel: HomeViewModel = hiltViewModel(),
+             navigateToItem: () -> Unit,
 
-               modifier: Modifier = Modifier,
-               contentPadding: PaddingValues = PaddingValues(0.dp),
+             modifier: Modifier = Modifier,
+             contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {val homeUiState by viewModel.homeUiState.collectAsState()
 
     Column(

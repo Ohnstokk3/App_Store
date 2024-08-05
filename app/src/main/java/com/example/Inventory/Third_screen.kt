@@ -26,6 +26,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.Inventory.navigation.NavigationDestination
 import com.example.Layer.ItemDao
@@ -42,7 +44,7 @@ object ItemEntryDestination : NavigationDestination {
 
 
 @Composable
-fun ItemEntryBody(viewModel: ItemEntryViewModel = viewModel(factory = AppViewModelProvider.Factory),
+fun ItemEntryBody(viewModel: ItemEntryViewModel = hiltViewModel(),
                   itemUiState: ItemUiState = viewModel.itemUiState,
                   onItemValueChange: KFunction1<ItemDetails, Unit> = viewModel::updateUiState,
                   navigateToHome: () -> Unit,

@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.Inventory.navigation.NavigationDestination
 
@@ -18,7 +20,7 @@ object ItemDetailsDestination : NavigationDestination {
     override val route = "item_details"
 }
 @Composable
-fun Deatail_state(viewModel: ItemDetailViewModel= viewModel(factory = AppViewModelProvider.Factory)){
+fun Deatail_state(viewModel: ItemDetailViewModel= hiltViewModel()){
     val uiState = viewModel.uiState.collectAsState()
     Detail(
         itemDetailsUiState = uiState.value

@@ -6,8 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.NumberFormat
 import java.util.Date
+import javax.inject.Inject
 
 data class pen(
     val knee:MutableList<Double> = mutableListOf()
@@ -15,7 +17,8 @@ data class pen(
 /**
  * ViewModel to validate and insert items in the Room database.
  */
-class ItemEntryViewModel(private val itemsRepository: ItemsRepository) : ViewModel() {
+@HiltViewModel
+class ItemEntryViewModel @Inject constructor(private val itemsRepository: ItemsRepository) : ViewModel() {
 
     /**
      * Holds current item ui state

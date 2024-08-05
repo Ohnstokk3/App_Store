@@ -43,10 +43,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.Graphs.BmiState
 import com.example.Graphs.MainViewModel
-import com.example.Inventory.AppViewModelProvider
+
 import com.example.Inventory.navigation.NavigationDestination
 import com.example.main_app_store.R
 import kotlinx.coroutines.launch
@@ -57,7 +59,7 @@ object Add_EmployeeDestination : NavigationDestination {
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Employee(viewModel: EmployeeViewModel = viewModel(factory = AppViewModelProvider.Factory), navigatemain: () -> Unit) {
+fun Employee(viewModel: EmployeeViewModel = hiltViewModel(), navigatemain: () -> Unit) {
         Column(
                 modifier = Modifier.fillMaxSize().padding(start = 10.dp),
                 horizontalAlignment = Alignment.Start,

@@ -29,26 +29,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.example.Inventory.AppViewModelProvider
+
 import com.example.Inventory.HomeViewModel
 
 import com.example.Inventory.formatePrice
 import com.example.Inventory.navigation.NavigationDestination
 import com.example.Layer.Item
 import com.example.Layer.User
+import dagger.hilt.android.lifecycle.HiltViewModel
+
 object resultDestination : NavigationDestination {
     override val route = "result"
 
 }
 
 @Composable
-fun Body(viewModel: result_viewmodel = viewModel(factory = AppViewModelProvider.Factory),
+fun Body(viewModel: result_viewmodel = hiltViewModel(),
          navigateToItems: () -> Unit,
 
-             modifier: Modifier = Modifier,
-             contentPadding: PaddingValues = PaddingValues(0.dp),
+         modifier: Modifier = Modifier,
+         contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {val resultUiState by viewModel.resultUiState.collectAsState()
 
     Column(

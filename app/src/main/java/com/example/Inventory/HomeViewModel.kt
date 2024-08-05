@@ -5,16 +5,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.Layer.Item
 import com.example.Layer.ItemsRepository
 import com.example.main_app_store.Data.Items
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
 
 /**
  * ViewModel to retrieve all items in the Room database.
  */
-class HomeViewModel(itemsRepository: ItemsRepository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(itemsRepository: ItemsRepository) : ViewModel() {
 
     /**
      * Holds home ui state. The list of items are retrieved from [ItemsRepository] and mapped to

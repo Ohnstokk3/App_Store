@@ -1,8 +1,8 @@
 plugins {
-
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -50,8 +50,15 @@ android {
         }
     }
 }
-
+kapt {
+    correctErrorTypes = true
+}
 dependencies {
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    kapt("com.google.dagger:hilt-compiler:2.48")
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation(libs.androidx.navigation.compose)
