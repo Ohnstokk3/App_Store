@@ -38,7 +38,7 @@ import com.example.Layer.Item
 import com.example.Layer.NameCount
 
 
-object HomesDestination : NavigationDestination {
+object QueryDestination : NavigationDestination {
     override val route = "homes"
 
 }

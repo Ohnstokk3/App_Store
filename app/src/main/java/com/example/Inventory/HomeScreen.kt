@@ -50,7 +50,7 @@ object HomeDestination : NavigationDestination {
  */
 @Composable
 fun HomeBody(viewModel: HomeViewModel = hiltViewModel(),
-             navigateToItem: () -> Unit,
+             navigateToItem: (Int) -> Unit,
 
              modifier: Modifier = Modifier,
              contentPadding: PaddingValues = PaddingValues(0.dp),
@@ -63,7 +63,7 @@ fun HomeBody(viewModel: HomeViewModel = hiltViewModel(),
 
         InventoryList(
             itemList = homeUiState.itemList,
-            onItemClick = { navigateToItem() },
+            onItemClick = { navigateToItem(it.id) },
             contentPadding = contentPadding,
             modifier = Modifier.padding(horizontal =8.dp)
         )
@@ -82,7 +82,7 @@ fun InventoryList(
         modifier = modifier,
         contentPadding = contentPadding
     ) {
-        items(items=itemList) { item ->
+        items(items=itemList, key = { it.id }) { item ->
             InventoryItem(item = item,
                 modifier = Modifier
                     .padding(8.dp)

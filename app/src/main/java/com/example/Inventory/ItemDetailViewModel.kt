@@ -14,12 +14,13 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class ItemDetailViewModel @Inject constructor(itemsRepository: ItemsRepository) : ViewModel() {
+class ItemDetailViewModel @Inject constructor(itemsRepository: ItemsRepository,savedStateHandle: SavedStateHandle,) : ViewModel() {
 
+    private val itemId: Int = checkNotNull(savedStateHandle[ItemDetailsDestination.itemIdArg])
 
 
     val uiState: StateFlow<ItemDetailsUiState> =
-        itemsRepository.getItemStream(id=2)
+        itemsRepository.getItemStream(itemId)
             .filterNotNull()
             .map {
                 ItemDetailsUiState(itemDetails = it.toItemDetails())
