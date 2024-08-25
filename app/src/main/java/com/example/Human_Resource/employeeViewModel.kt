@@ -2,9 +2,7 @@ package com.example.Human_Resource
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import com.example.Layer.ItemsRepository
 import com.example.Layer.User
