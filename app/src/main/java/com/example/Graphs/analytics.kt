@@ -57,7 +57,7 @@ object AnalyticsDestination : NavigationDestination {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            Test(listOf(20f,24f,33f,27f,55f,30f,66f,10f,15f))
+            Test(viewModel.state.team)
         }
     }
 

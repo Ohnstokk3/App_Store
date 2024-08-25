@@ -10,7 +10,7 @@ data class BmiState(
 val height:String = "",
 
 val lowerWeightBound:Double=0.0,
-
+val team: List<Float> = emptyList()
 )
 
 class MainViewModel: ViewModel() {
@@ -19,9 +19,13 @@ class MainViewModel: ViewModel() {
     private fun calculateWeightBounds(){
 
         val calculateList:List<String> = state.height.split(",")/**Convert to list and use , as indicator for the next number the user entered */
-
+val twest=state.height.split(",")
+        val convert6=twest.map { it.toFloat() }
         val ConvertListIntoDouble=calculateList.map { it.toDoubleOrNull()?:0.0 }/**We use the map operator to convert the String list
         into a Double List or the user enters a letter the considered a null */
+        state=state.copy(
+            team = convert6
+        )
         var xysum=0.0
         var  xsum=0.0
         var square=0.0
