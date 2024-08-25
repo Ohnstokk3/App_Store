@@ -19,8 +19,8 @@ class MainViewModel: ViewModel() {
     private fun calculateWeightBounds(){
 
         val calculateList:List<String> = state.height.split(",")/**Convert to list and use , as indicator for the next number the user entered */
-val twest=state.height.split(",")
-        val convert6=twest.map { it.toFloat() }
+
+        val convert6=calculateList.map { it.toFloatOrNull() ?: 0.0f }
         val ConvertListIntoDouble=calculateList.map { it.toDoubleOrNull()?:0.0 }/**We use the map operator to convert the String list
         into a Double List or the user enters a letter the considered a null */
         state=state.copy(
@@ -66,6 +66,7 @@ val twest=state.height.split(",")
     }
 
     fun changeHeight(height:String){
+
         state = state.copy(
             height = height
         )

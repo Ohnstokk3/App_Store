@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.List
@@ -64,7 +64,7 @@ object AnalyticsDestination : NavigationDestination {
 @Composable
 fun Test(data: List<Float>) {
     val maxDataValue = data.maxOrNull() ?: 0f // Handle an empty list or list with 0 values
-    val scale = 1700f / maxDataValue // Calculate scaling factor
+    val scale = 1000f / maxDataValue // Calculate scaling factor
 
     Canvas(
         modifier = Modifier
@@ -79,7 +79,7 @@ fun Test(data: List<Float>) {
             drawRect(
                 color = Color.Red,
                 size = Size(barWidth, barHeight),
-                topLeft = Offset( 80+ index *200f,y = 1700f - barHeight // Draw bars from top to bottom)
+                topLeft = Offset( 80+ index *200f,y = 1400f - barHeight // Draw bars from top to bottom)
                 )
             )
         }
