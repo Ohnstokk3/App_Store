@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -17,9 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.Inventory.navigation.NavigationDestination
 
+object AnalyticsDestination : NavigationDestination {
+    override val route = "Analytics"
+
+}
     @Composable
     fun Analytics(
         viewModel: MainViewModel = viewModel(),
@@ -48,14 +56,32 @@ import androidx.lifecycle.viewmodel.compose.viewModel
                 /**here*/  "Prediction: ${viewModel.state.lowerWeightBound}",
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Canvas(modifier = Modifier.size(200.dp)) {
-                val canvasWidth = size.width
-                val canvasHeight = size.height
-                drawLine(
-                    start = Offset(x = canvasWidth, y = 0.9f),
-                    end = Offset(x = 0f, y = canvasHeight),
-                    color = androidx.compose.ui.graphics.Color.Blue
-                )
-            }
+
+            Test(listOf(20f,24f,33f,27f,55f,30f,66f,10f,15f))
         }
     }
+
+@Composable
+fun Test(data: List<Float>) {
+    val maxDataValue = data.maxOrNull() ?: 0f // Handle an empty list or list with 0 values
+    val scale = 1700f / maxDataValue // Calculate scaling factor
+
+    Canvas(
+        modifier = Modifier
+            .padding(horizontal = 10.dp)
+            .fillMaxSize()
+    ) {
+        val barWidth = 50f // Adjust for desired bar width
+
+        data.forEachIndexed { index, value ->
+            val barHeight = value * scale // Calculate bar height based on data and scaling
+
+            drawRect(
+                color = Color.Red,
+                size = Size(barWidth, barHeight),
+                topLeft = Offset( 80+ index *200f,y = 1700f - barHeight // Draw bars from top to bottom)
+                )
+            )
+        }
+    }
+}

@@ -7,6 +7,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.Graphs.Analytics
+import com.example.Graphs.AnalyticsDestination
 import com.example.Human_Resource.Add_EmployeeDestination
 import com.example.Human_Resource.Body
 import com.example.Human_Resource.Employee
@@ -32,9 +34,13 @@ fun InventoryNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = ItemEntryDestination.route,
+        startDestination = AnalyticsDestination.route,
         modifier = modifier
     ) {
+
+        composable(route = AnalyticsDestination.route) {
+            Analytics()
+        }
         composable(route = resultDestination.route) {
             Body(navigateToItems = { navController.navigate(HomeDestination.route) })
         }
