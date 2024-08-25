@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 data class BmiState(
 
 val height:String = "",
-
+val month:String="",
 val lowerWeightBound:Double=0.0,
 val team: List<Float> = emptyList()
 )
@@ -17,7 +17,7 @@ class MainViewModel: ViewModel() {
     var state by mutableStateOf(BmiState())
 
     private fun calculateWeightBounds(){
-
+val whichmonth= state.month.toIntOrNull()?:0
         val calculateList:List<String> = state.height.split(",")/**Convert to list and use , as indicator for the next number the user entered */
 
         val convert6=calculateList.map { it.toFloatOrNull() ?: 0.0f }
@@ -57,7 +57,7 @@ class MainViewModel: ViewModel() {
         val msum =sumof/sumof2
         val b =ysum-msum*xsum
         val ctotal= b/numbersInTheArray
-        val prediction=msum*6+ctotal/**here we are using 6 but we can let the user enter a value they want*/
+        val prediction=msum*whichmonth+ctotal/**here we are using 6 but we can let the user enter a value they want*/
         val lWeight = (prediction)/***here**/
         state = state.copy(
             lowerWeightBound = lWeight,
@@ -69,6 +69,12 @@ class MainViewModel: ViewModel() {
 
         state = state.copy(
             height = height
+        )
+        calculateWeightBounds()
+    }
+    fun changemonth(month: String){
+        state=state.copy(
+            month = month
         )
         calculateWeightBounds()
     }

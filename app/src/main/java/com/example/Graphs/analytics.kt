@@ -46,14 +46,14 @@ object AnalyticsDestination : NavigationDestination {
             )
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
-                value = viewModel.state.height,
-                onValueChange = { viewModel.changeHeight(it) },
+                value = viewModel.state.month,
+                onValueChange = { viewModel.changemonth(it) },
                 leadingIcon ={  Icon(Icons.Default.CalendarMonth, "Correct", tint = androidx.compose.ui.graphics.Color.Blue
                 ) },
                 label = { Text(text = "Enter month ") },)
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                /**here*/  "Prediction: ${viewModel.state.lowerWeightBound}",
+                /**here*/  "Prediction for the ${viewModel.state.month} month  : ${viewModel.state.lowerWeightBound}",
             )
             Spacer(modifier = Modifier.height(16.dp))
 
